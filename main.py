@@ -15,9 +15,20 @@ Jeem = pygame.image.load("C:/spel/grafik/pngs/Jeem.png").convert_alpha()
 Jeem = pygame.transform.scale(Jeem, (80, 80)) 
 
 
+class Target:
+    def __init__(self, img):
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.is_visible = False
+        self.timer = 0
+        self.display_duration = 1200 # How long Jeem stays up
+        self.next_pop_time = pygame.time.get_ticks() + random.randint(500, 3000)
 
-
-
+    def spawn(self):
+        self.is_visible = True
+        self.rect.x = random.randint(100, SKÄRMENS_BREDD - 100)
+        self.rect.y = random.randint(100, SKÄRMENS_HÖJD - 250) # Keep him above the "counter"
+        self.timer = pygame.time.get_ticks()
 
 
 
